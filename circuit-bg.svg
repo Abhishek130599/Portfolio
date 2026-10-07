@@ -1,0 +1,258 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" fill="none" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <style>
+      .pcb-trace { stroke: rgba(38, 50, 68, 0.42); stroke-width: 1.5; fill: none; }
+      .pcb-trace-subtle { stroke: rgba(28, 37, 49, 0.3); stroke-width: 1; fill: none; }
+      .pcb-pulse-mint {
+        fill: none;
+        stroke: #6ee7b7;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: 65 320;
+        filter: drop-shadow(0 0 6px rgba(110, 231, 183, 0.8));
+        animation: pcbTravel 7.5s linear infinite;
+      }
+      .pcb-pulse-cyan {
+        fill: none;
+        stroke: #67b7ff;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: 75 350;
+        filter: drop-shadow(0 0 6px rgba(103, 183, 255, 0.8));
+        animation: pcbTravel 8.5s linear infinite;
+      }
+      .pcb-pulse-fast { animation-duration: 5s; }
+      .pcb-pulse-slow { animation-duration: 11s; }
+      .pcb-pulse-delay-1 { animation-delay: -3s; }
+      .pcb-pulse-delay-2 { animation-delay: -5.5s; }
+      @keyframes pcbTravel {
+        0% { stroke-dashoffset: 800; }
+        100% { stroke-dashoffset: 0; }
+      }
+      .logic-wave {
+        fill: none;
+        stroke: #6ee7b7;
+        stroke-width: 1.4;
+        stroke-dasharray: 35 180;
+        filter: drop-shadow(0 0 4px rgba(110, 231, 183, 0.7));
+        animation: logicWaveScroll 6s linear infinite;
+      }
+      .logic-wave-cyan {
+        stroke: #67b7ff;
+        filter: drop-shadow(0 0 4px rgba(103, 183, 255, 0.7));
+        animation-duration: 7.5s;
+        animation-delay: -2s;
+      }
+      @keyframes logicWaveScroll {
+        0% { stroke-dashoffset: 450; }
+        100% { stroke-dashoffset: 0; }
+      }
+      .pcb-via-outer { fill: #07090d; stroke: rgba(110, 231, 183, 0.3); stroke-width: 1.2; }
+      .pcb-via-inner { fill: #6ee7b7; opacity: 0.5; }
+      .pcb-led {
+        fill: #6ee7b7;
+        filter: drop-shadow(0 0 8px #6ee7b7);
+        animation: ledBlink 2.4s infinite ease-in-out;
+      }
+      .pcb-led-cyan {
+        fill: #67b7ff;
+        filter: drop-shadow(0 0 8px #67b7ff);
+        animation: ledBlink 1.9s infinite ease-in-out 0.8s;
+      }
+      .pcb-led-fast { animation-duration: 1.3s; }
+      @keyframes ledBlink {
+        0%, 100% { opacity: 0.15; }
+        45%, 55% { opacity: 1; }
+      }
+      .pcb-chip-body { fill: #090d14; stroke: rgba(110, 231, 183, 0.32); stroke-width: 1.5; }
+      .pcb-chip-pin { stroke: rgba(110, 231, 183, 0.4); stroke-width: 1.5; }
+      .chip-title {
+        font-family: 'JetBrains Mono', 'Courier New', monospace;
+        font-size: 10px;
+        font-weight: 600;
+        fill: #6ee7b7;
+        letter-spacing: 0.1em;
+      }
+      .chip-sub {
+        font-family: 'JetBrains Mono', 'Courier New', monospace;
+        font-size: 7.5px;
+        fill: #8d98a7;
+        letter-spacing: 0.08em;
+      }
+      .pcb-code-tag {
+        font-family: 'JetBrains Mono', 'Courier New', monospace;
+        font-size: 9.5px;
+        fill: rgba(141, 152, 167, 0.55);
+        letter-spacing: 0.05em;
+        animation: codeFloat 6s ease-in-out infinite alternate;
+      }
+      .pcb-code-tag.cyan { fill: rgba(103, 183, 255, 0.7); }
+      .pcb-code-tag.mint { fill: rgba(110, 231, 183, 0.7); }
+      @keyframes codeFloat {
+        0% { opacity: 0.35; transform: translateY(0); }
+        100% { opacity: 0.85; transform: translateY(-4px); }
+      }
+      .binary-stream {
+        font-family: 'JetBrains Mono', 'Courier New', monospace;
+        font-size: 8.5px;
+        fill: rgba(110, 231, 183, 0.32);
+        letter-spacing: 0.18em;
+      }
+    </style>
+    <filter id="pcb-glow-mint" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="pcb-glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Static PCB Circuit Base Traces -->
+  <g class="pcb-static-traces">
+    <!-- Top Left to Center Bus -->
+    <path d="M -20,140 H 180 L 260,220 H 420 L 500,300 H 680 L 720,340 V 440" class="pcb-trace" />
+    <path d="M -20,165 H 170 L 250,245 H 410 L 490,325 H 660 L 700,365 V 440" class="pcb-trace" />
+    
+    <!-- North Bus into MCU -->
+    <path d="M 760,0 V 160 L 730,190 V 440" class="pcb-trace" />
+    <path d="M 780,0 V 150 L 750,180 V 440" class="pcb-trace" />
+
+    <!-- Left Vertical Channel -->
+    <path d="M 120,0 V 180 L 60,240 V 620 L 140,700 V 920" class="pcb-trace-subtle" />
+    <path d="M 140,0 V 170 L 80,230 V 610 L 160,690 V 920" class="pcb-trace-subtle" />
+
+    <!-- Bottom Data Highway -->
+    <path d="M 0,760 H 240 L 340,660 H 580 L 680,760 H 940 L 1020,840 H 1460" class="pcb-trace" />
+    <path d="M 0,785 H 230 L 330,685 H 570 L 670,785 H 930 L 1010,865 H 1460" class="pcb-trace" />
+
+    <!-- Top Right CAN Bus (Automotive Differential Pair) -->
+    <path d="M 1460,140 H 1240 L 1140,240 H 960 L 880,320 H 820" class="pcb-trace" />
+    <path d="M 1460,165 H 1250 L 1150,265 H 970 L 890,345 H 820" class="pcb-trace" />
+
+    <!-- Lower Right Telemetry Bus -->
+    <path d="M 820,560 H 940 L 1040,660 H 1240 L 1320,580 H 1460" class="pcb-trace" />
+    <path d="M 820,585 H 930 L 1030,685 H 1230 L 1310,605 H 1460" class="pcb-trace" />
+  </g>
+
+  <!-- Animated Signal Pulses Traveling on Traces -->
+  <g class="pcb-animated-pulses">
+    <path d="M -20,140 H 180 L 260,220 H 420 L 500,300 H 680 L 720,340 V 440" class="pcb-pulse-mint" />
+    <path d="M -20,165 H 170 L 250,245 H 410 L 490,325 H 660 L 700,365 V 440" class="pcb-pulse-cyan pcb-pulse-delay-1" />
+
+    <path d="M 760,0 V 160 L 730,190 V 440" class="pcb-pulse-mint pcb-pulse-fast" />
+    <path d="M 780,0 V 150 L 750,180 V 440" class="pcb-pulse-cyan pcb-pulse-delay-2" />
+
+    <path d="M 0,760 H 240 L 340,660 H 580 L 680,760 H 940 L 1020,840 H 1460" class="pcb-pulse-mint pcb-pulse-slow" />
+    <path d="M 0,785 H 230 L 330,685 H 570 L 670,785 H 930 L 1010,865 H 1460" class="pcb-pulse-cyan pcb-pulse-delay-1" />
+
+    <path d="M 1460,140 H 1240 L 1140,240 H 960 L 880,320 H 820" class="pcb-pulse-mint pcb-pulse-delay-2" />
+    <path d="M 1460,165 H 1250 L 1150,265 H 970 L 890,345 H 820" class="pcb-pulse-cyan" />
+
+    <path d="M 820,560 H 940 L 1040,660 H 1240 L 1320,580 H 1460" class="pcb-pulse-mint pcb-pulse-fast" />
+    <path d="M 820,585 H 930 L 1030,685 H 1230 L 1310,605 H 1460" class="pcb-pulse-cyan pcb-pulse-delay-1" />
+  </g>
+
+  <!-- Digital Logic Analyzer Waveforms -->
+  <g class="pcb-waveforms">
+    <path d="M 50,420 h 20 v -16 h 20 v 16 h 20 v -16 h 20 v 16 h 20 v -16 h 20 v 16 h 20 v -16 h 20 v 16 h 20 v -16 h 20 v 16 h 20 v -16 h 20 v 16 h 20 v -16 h 20 v 16" class="logic-wave" />
+    <path d="M 50,448 h 40 v -16 h 20 v 16 h 60 v -16 h 40 v 16 h 20 v -16 h 60 v 16 h 40" class="logic-wave logic-wave-cyan" />
+  </g>
+
+  <!-- Central MCU / ASIC Chip Footprint -->
+  <g class="pcb-mcu-chip">
+    <rect x="700" y="440" width="120" height="120" rx="10" class="pcb-chip-body" />
+    <circle cx="718" cy="458" r="3.5" fill="rgba(110,231,183,0.6)" />
+    
+    <!-- North Pins -->
+    <line x1="725" y1="440" x2="725" y2="425" class="pcb-chip-pin" />
+    <line x1="745" y1="440" x2="745" y2="425" class="pcb-chip-pin" />
+    <line x1="765" y1="440" x2="765" y2="425" class="pcb-chip-pin" />
+    <line x1="785" y1="440" x2="785" y2="425" class="pcb-chip-pin" />
+    <line x1="805" y1="440" x2="805" y2="425" class="pcb-chip-pin" />
+
+    <!-- South Pins -->
+    <line x1="725" y1="560" x2="725" y2="575" class="pcb-chip-pin" />
+    <line x1="745" y1="560" x2="745" y2="575" class="pcb-chip-pin" />
+    <line x1="765" y1="560" x2="765" y2="575" class="pcb-chip-pin" />
+    <line x1="785" y1="560" x2="785" y2="575" class="pcb-chip-pin" />
+    <line x1="805" y1="560" x2="805" y2="575" class="pcb-chip-pin" />
+
+    <!-- West Pins -->
+    <line x1="700" y1="465" x2="685" y2="465" class="pcb-chip-pin" />
+    <line x1="700" y1="485" x2="685" y2="485" class="pcb-chip-pin" />
+    <line x1="700" y1="505" x2="685" y2="505" class="pcb-chip-pin" />
+    <line x1="700" y1="525" x2="685" y2="525" class="pcb-chip-pin" />
+    <line x1="700" y1="545" x2="685" y2="545" class="pcb-chip-pin" />
+
+    <!-- East Pins -->
+    <line x1="820" y1="465" x2="835" y2="465" class="pcb-chip-pin" />
+    <line x1="820" y1="485" x2="835" y2="485" class="pcb-chip-pin" />
+    <line x1="820" y1="505" x2="835" y2="505" class="pcb-chip-pin" />
+    <line x1="820" y1="525" x2="835" y2="525" class="pcb-chip-pin" />
+    <line x1="820" y1="545" x2="835" y2="545" class="pcb-chip-pin" />
+
+    <!-- Chip Labels -->
+    <text x="760" y="493" text-anchor="middle" class="chip-title">STM32F4</text>
+    <text x="760" y="510" text-anchor="middle" class="chip-sub">ARM CORTEX-M4</text>
+    <text x="760" y="525" text-anchor="middle" class="chip-sub">168MHz · CAN · RTOS</text>
+  </g>
+
+  <!-- PCB Via Nodes & Solder Pads -->
+  <g class="pcb-vias">
+    <circle cx="180" cy="140" r="5" class="pcb-via-outer" />
+    <circle cx="180" cy="140" r="2" class="pcb-via-inner" />
+    <circle cx="260" cy="220" r="5" class="pcb-via-outer" />
+    <circle cx="260" cy="220" r="2" class="pcb-via-inner" />
+    <circle cx="420" cy="220" r="5" class="pcb-via-outer" />
+    <circle cx="420" cy="220" r="2" class="pcb-via-inner" />
+    <circle cx="500" cy="300" r="5" class="pcb-via-outer" />
+    <circle cx="500" cy="300" r="2" class="pcb-via-inner" />
+
+    <circle cx="1240" cy="140" r="5" class="pcb-via-outer" />
+    <circle cx="1240" cy="140" r="2" class="pcb-via-inner" />
+    <circle cx="1140" cy="240" r="5" class="pcb-via-outer" />
+    <circle cx="1140" cy="240" r="2" class="pcb-via-inner" />
+    <circle cx="960" cy="240" r="5" class="pcb-via-outer" />
+    <circle cx="960" cy="240" r="2" class="pcb-via-inner" />
+
+    <circle cx="340" cy="660" r="5" class="pcb-via-outer" />
+    <circle cx="340" cy="660" r="2" class="pcb-via-inner" />
+    <circle cx="580" cy="660" r="5" class="pcb-via-outer" />
+    <circle cx="580" cy="660" r="2" class="pcb-via-inner" />
+    <circle cx="940" cy="760" r="5" class="pcb-via-outer" />
+    <circle cx="940" cy="760" r="2" class="pcb-via-inner" />
+
+    <!-- Pulsing Status LEDs on Hardware Nodes -->
+    <circle cx="180" cy="140" r="3.5" class="pcb-led" />
+    <circle cx="500" cy="300" r="3.5" class="pcb-led-cyan" />
+    <circle cx="1140" cy="240" r="3.5" class="pcb-led pcb-led-fast" />
+    <circle cx="340" cy="660" r="3.5" class="pcb-led-cyan" />
+    <circle cx="940" cy="760" r="3.5" class="pcb-led" />
+  </g>
+
+  <!-- Embedded Engineering Annotations & Registers -->
+  <g class="pcb-code-annotations">
+    <text x="70" y="125" class="pcb-code-tag mint">0x40021000 // RCC_AHB1ENR</text>
+    <text x="270" y="205" class="pcb-code-tag cyan">CAN_FILTER_BANK_0 [0x18DAF110]</text>
+    <text x="50" y="405" class="pcb-code-tag">TIM2_CLK: 84.0 MHz [PWM]</text>
+    <text x="50" y="475" class="pcb-code-tag cyan">I2C1_SDA / SCL: 400 kbps [FAST]</text>
+    <text x="1060" y="125" class="pcb-code-tag cyan">0x08000000 // FLASH_BASE</text>
+    <text x="970" y="225" class="pcb-code-tag mint">HAL_CAN_Receive_IT(&amp;hcan1)</text>
+    <text x="1060" y="645" class="pcb-code-tag">OTA_CRC32: 0x8C74D92F [OK]</text>
+    <text x="360" y="645" class="pcb-code-tag mint">FreeRTOS: vTaskDelay(10ms)</text>
+    <text x="700" y="745" class="pcb-code-tag cyan">SPI1_CR1: 0x0354 [MASTER]</text>
+
+    <!-- Binary Streams on Data Buses -->
+    <text x="260" y="240" class="binary-stream">01001100 01101111 01100001 01100100</text>
+    <text x="965" y="260" class="binary-stream">11010001 00101110 11110000 00001111</text>
+    <text x="340" y="680" class="binary-stream">00110001 00110010 00110011 00110100</text>
+  </g>
+</svg>
