@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Abhishek Makwana — Senior Firmware Developer specializing in Embedded Systems, IoT and Automotive firmware.">
+  <title>Abhishek Makwana | Senior Firmware Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="nav">
+    <a class="logo" href="#home">AM<span>.</span></a>
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-grid"></div>
+      <div class="hero-content">
+        <p class="eyebrow"><span class="pulse"></span> SENIOR FIRMWARE DEVELOPER</p>
+        <h1>Building reliable firmware for <span>real-world systems.</span></h1>
+        <p class="hero-text">
+          I’m Abhishek Makwana, a firmware developer with 5 years of experience
+          working across embedded systems, IoT and automotive applications.
+          I turn hardware capabilities into robust, maintainable software.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#projects">View Projects ↗</a>
+          <a class="btn secondary" href="#contact">Let's Connect</a>
+        </div>
+        <div class="quick-stats">
+          <div><strong>5+</strong><span>Years Experience</span></div>
+          <div><strong>3</strong><span>Core Domains</span></div>
+          <div><strong>9+</strong><span>Key Technologies</span></div>
+        </div>
+      </div>
+      <div class="terminal-card">
+        <div class="terminal-top"><span></span><span></span><span></span><b>firmware.c</b></div>
+        <pre><code><span class="muted">// system initialization</span>
+<span class="kw">int</span> <span class="fn">main</span>(<span class="kw">void</span>)
+{
+    <span class="fn">HAL_Init</span>();
+    <span class="fn">Clock_Config</span>();
+
+    <span class="fn">UART_Init</span>();
+    <span class="fn">SPI_Init</span>();
+    <span class="fn">I2C_Init</span>();
+    <span class="fn">CAN_Init</span>();
+
+    <span class="fn">MQTT_Connect</span>();
+    <span class="fn">OTA_Check</span>();
+
+    <span class="kw">while</span> (<span class="num">1</span>)
+    {
+        <span class="fn">Process_Events</span>();
+        <span class="fn">Enter_Low_Power</span>();
+    }
+}</code></pre>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="section-label">01 / ABOUT</div>
+      <div class="section-content two-col">
+        <div>
+          <h2>Firmware that bridges <span>hardware & software.</span></h2>
+        </div>
+        <div>
+          <p>
+            I specialize in designing and developing embedded firmware for
+            connected and automotive systems. My work focuses on communication
+            interfaces, device connectivity, diagnostics, OTA updates, and
+            dependable low-level software.
+          </p>
+          <p>
+            I enjoy solving problems close to the hardware while keeping
+            software architecture clean, testable, and scalable.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-label">02 / EXPERTISE</div>
+      <div class="section-content">
+        <h2>Technical toolkit</h2>
+        <div class="skill-grid">
+          <article class="skill-card"><span class="skill-icon">01</span><h3>Embedded</h3><p>Firmware architecture, MCU peripherals, drivers, RTOS concepts, interrupts and low-level debugging.</p><div class="tags"><span>C/C++</span><span>MCU</span><span>RTOS</span></div></article>
+          <article class="skill-card"><span class="skill-icon">02</span><h3>Communication</h3><p>Reliable device-to-device communication and peripheral integration across common embedded buses.</p><div class="tags"><span>UART</span><span>SPI</span><span>I²C</span><span>CAN</span></div></article>
+          <article class="skill-card"><span class="skill-icon">03</span><h3>IoT & Cloud</h3><p>Connected-device workflows, telemetry, remote commands and secure firmware update concepts.</p><div class="tags"><span>MQTT</span><span>HTTP</span><span>BLE</span><span>OTA</span></div></article>
+          <article class="skill-card"><span class="skill-icon">04</span><h3>Automotive</h3><p>Automotive communication and diagnostics-oriented firmware with a focus on reliability and determinism.</p><div class="tags"><span>CAN</span><span>Diagnostics</span><span>ECU</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section projects" id="projects">
+      <div class="section-label">03 / SELECTED PROJECTS</div>
+      <div class="section-content">
+        <div class="projects-heading">
+          <h2>Things I like to build.</h2>
+          <p>Representative portfolio projects based on embedded, IoT and automotive technologies.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card featured">
+            <div class="project-number">01</div>
+            <div class="project-body">
+              <p class="project-type">AUTOMOTIVE / CAN</p>
+              <h3>CAN Vehicle Diagnostics Node</h3>
+              <p>Designed a firmware architecture for receiving, filtering and transmitting CAN frames, with diagnostic data handling and fault-oriented event processing.</p>
+              <div class="tags"><span>C/C++</span><span>CAN</span><span>Diagnostics</span><span>ECU</span></div>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-number">02</div>
+            <div class="project-body">
+              <p class="project-type">IOT / MQTT</p>
+              <h3>Connected Sensor Gateway</h3>
+              <p>Embedded gateway that collects sensor data over I²C/SPI and publishes telemetry to an IoT backend using MQTT.</p>
+              <div class="tags"><span>I²C</span><span>SPI</span><span>MQTT</span></div>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-number">03</div>
+            <div class="project-body">
+              <p class="project-type">CONNECTIVITY / BLE</p>
+              <h3>BLE Device Configuration</h3>
+              <p>BLE-based configuration workflow for provisioning device parameters, reading status and transferring small control payloads.</p>
+              <div class="tags"><span>BLE</span><span>UART</span><span>GATT</span></div>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-number">04</div>
+            <div class="project-body">
+              <p class="project-type">FIRMWARE / OTA</p>
+              <h3>HTTP Firmware Update</h3>
+              <p>OTA update flow using HTTP, including image validation, version handling and safe handoff to the new firmware image.</p>
+              <div class="tags"><span>HTTP</span><span>OTA</span><span>Bootloader</span></div>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-number">05</div>
+            <div class="project-body">
+              <p class="project-type">DRIVERS / PERIPHERALS</p>
+              <h3>Peripheral Driver Layer</h3>
+              <p>Modular driver layer for UART, SPI and I²C peripherals with clear interfaces between hardware abstraction and application logic.</p>
+              <div class="tags"><span>UART</span><span>SPI</span><span>I²C</span></div>
+            </div>
+          </article>
+          <article class="project-card">
+            <div class="project-number">06</div>
+            <div class="project-body">
+              <p class="project-type">IOT / EDGE</p>
+              <h3>Telemetry & Command Service</h3>
+              <p>Embedded service that exposes device telemetry over HTTP while accepting remote commands and coordinating local peripherals.</p>
+              <div class="tags"><span>HTTP</span><span>MQTT</span><span>Embedded</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section experience">
+      <div class="section-label">04 / EXPERIENCE</div>
+      <div class="section-content experience-row">
+        <div>
+          <p class="eyebrow">CAREER SNAPSHOT</p>
+          <h2>5 years of <span>firmware engineering.</span></h2>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div><strong>Senior Firmware Developer</strong><p>Embedded · IoT · Automotive</p><span>5 Years Experience</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact-inner">
+        <p class="eyebrow">05 / CONTACT</p>
+        <h2>Have a firmware problem<br><span>worth solving?</span></h2>
+        <p>I'm open to discussing embedded systems, IoT, automotive firmware and interesting engineering challenges.</p>
+        <a class="btn primary" href="mailto:mabhishek13599@gmail.com">mabhishek13599@gmail.com ↗</a>
+        <div class="socials">
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          <a href="https://github.com/Abhishek130599/" aria-label="GitHub">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>© 2026 Abhishek Makwana</span><span>Developed by Abhishek</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
