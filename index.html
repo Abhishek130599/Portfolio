@@ -1,30 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Abhishek Makwana — Senior Firmware Developer specializing in Embedded Systems, IoT and Automotive firmware.">
+  <meta name="description"
+    content="Abhishek Makwana — Senior Firmware Developer specializing in Embedded Systems, IoT and Automotive firmware.">
   <title>Abhishek Makwana | Senior Firmware Developer</title>
+  <script>
+    function getStoredTheme() {
+      try {
+        return localStorage.getItem('theme');
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function applyTheme(theme) {
+      var next = theme === 'light' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      if (document.body) {
+        document.body.setAttribute('data-theme', next);
+        document.body.classList.remove('theme-dark', 'theme-light');
+        document.body.classList.add('theme-' + next);
+      }
+      document.documentElement.classList.remove('theme-dark', 'theme-light');
+      document.documentElement.classList.add('theme-' + next);
+
+      try {
+        localStorage.setItem('theme', next);
+      } catch (e) {}
+
+      var btn = document.getElementById('theme-toggle');
+      if (btn) {
+        btn.setAttribute('aria-label', next === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+        btn.setAttribute('title', next === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+      }
+    }
+
+    function toggleTheme() {
+      var current = document.documentElement.getAttribute('data-theme') || 'dark';
+      var next = current === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+    }
+
+    (function () {
+      var saved = getStoredTheme();
+      if (saved === 'light' || saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', saved);
+        document.documentElement.classList.add('theme-' + saved);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.documentElement.classList.add('theme-light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.documentElement.classList.add('theme-dark');
+      }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
+
 <body>
   <nav class="nav">
     <a class="logo" href="#home">AM<span>.</span></a>
-    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
+      <a href="#journey">Journey</a>
       <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-controls">
+      <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark and light theme" title="Toggle theme">
+        <svg class="theme-icon sun-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
     </div>
   </nav>
 
   <main>
     <section class="hero" id="home">
       <div class="hero-grid"></div>
+      <div class="hero-pcb-bg" aria-hidden="true">
+        <img src="circuit-bg.svg" class="pcb-svg" alt="" aria-hidden="true">
+      </div>
       <div class="hero-content">
         <p class="eyebrow"><span class="pulse"></span> SENIOR FIRMWARE DEVELOPER</p>
         <h1>Building reliable firmware for <span>real-world systems.</span></h1>
@@ -43,31 +121,7 @@
           <div><strong>9+</strong><span>Key Technologies</span></div>
         </div>
       </div>
-      <div class="terminal-card">
-        <div class="terminal-top"><span></span><span></span><span></span><b>firmware.c</b></div>
-        <pre><code><span class="muted">// system initialization</span>
-<span class="kw">int</span> <span class="fn">main</span>(<span class="kw">void</span>)
-{
-    <span class="fn">HAL_Init</span>();
-    <span class="fn">Clock_Config</span>();
-
-    <span class="fn">UART_Init</span>();
-    <span class="fn">SPI_Init</span>();
-    <span class="fn">I2C_Init</span>();
-    <span class="fn">CAN_Init</span>();
-
-    <span class="fn">MQTT_Connect</span>();
-    <span class="fn">OTA_Check</span>();
-
-    <span class="kw">while</span> (<span class="num">1</span>)
-    {
-        <span class="fn">Process_Events</span>();
-        <span class="fn">Enter_Low_Power</span>();
-    }
-}</code></pre>
-      </div>
     </section>
-
     <section class="section about" id="about">
       <div class="section-label">01 / ABOUT</div>
       <div class="section-content two-col">
@@ -94,10 +148,27 @@
       <div class="section-content">
         <h2>Technical toolkit</h2>
         <div class="skill-grid">
-          <article class="skill-card"><span class="skill-icon">01</span><h3>Embedded</h3><p>Firmware architecture, MCU peripherals, drivers, RTOS concepts, interrupts and low-level debugging.</p><div class="tags"><span>C/C++</span><span>MCU</span><span>RTOS</span></div></article>
-          <article class="skill-card"><span class="skill-icon">02</span><h3>Communication</h3><p>Reliable device-to-device communication and peripheral integration across common embedded buses.</p><div class="tags"><span>UART</span><span>SPI</span><span>I²C</span><span>CAN</span></div></article>
-          <article class="skill-card"><span class="skill-icon">03</span><h3>IoT & Cloud</h3><p>Connected-device workflows, telemetry, remote commands and secure firmware update concepts.</p><div class="tags"><span>MQTT</span><span>HTTP</span><span>BLE</span><span>OTA</span></div></article>
-          <article class="skill-card"><span class="skill-icon">04</span><h3>Automotive</h3><p>Automotive communication and diagnostics-oriented firmware with a focus on reliability and determinism.</p><div class="tags"><span>CAN</span><span>Diagnostics</span><span>ECU</span></div></article>
+          <article class="skill-card"><span class="skill-icon">01</span>
+            <h3>Embedded</h3>
+            <p>Firmware architecture, MCU peripherals, drivers, RTOS concepts, interrupts and low-level debugging.</p>
+            <div class="tags"><span>C/C++</span><span>MCU</span><span>RTOS</span></div>
+          </article>
+          <article class="skill-card"><span class="skill-icon">02</span>
+            <h3>Communication</h3>
+            <p>Reliable device-to-device communication and peripheral integration across common embedded buses.</p>
+            <div class="tags"><span>UART</span><span>SPI</span><span>I²C</span><span>CAN</span></div>
+          </article>
+          <article class="skill-card"><span class="skill-icon">03</span>
+            <h3>IoT & Cloud</h3>
+            <p>Connected-device workflows, telemetry, remote commands and secure firmware update concepts.</p>
+            <div class="tags"><span>MQTT</span><span>HTTP</span><span>BLE</span><span>OTA</span></div>
+          </article>
+          <article class="skill-card"><span class="skill-icon">04</span>
+            <h3>Automotive</h3>
+            <p>Automotive communication and diagnostics-oriented firmware with a focus on reliability and determinism.
+            </p>
+            <div class="tags"><span>CAN</span><span>Diagnostics</span><span>ECU</span></div>
+          </article>
         </div>
       </div>
     </section>
@@ -115,7 +186,8 @@
             <div class="project-body">
               <p class="project-type">AUTOMOTIVE / CAN</p>
               <h3>CAN Vehicle Diagnostics Node</h3>
-              <p>Designed a firmware architecture for receiving, filtering and transmitting CAN frames, with diagnostic data handling and fault-oriented event processing.</p>
+              <p>Designed a firmware architecture for receiving, filtering and transmitting CAN frames, with diagnostic
+                data handling and fault-oriented event processing.</p>
               <div class="tags"><span>C/C++</span><span>CAN</span><span>Diagnostics</span><span>ECU</span></div>
             </div>
           </article>
@@ -124,7 +196,8 @@
             <div class="project-body">
               <p class="project-type">IOT / MQTT</p>
               <h3>Connected Sensor Gateway</h3>
-              <p>Embedded gateway that collects sensor data over I²C/SPI and publishes telemetry to an IoT backend using MQTT.</p>
+              <p>Embedded gateway that collects sensor data over I²C/SPI and publishes telemetry to an IoT backend using
+                MQTT.</p>
               <div class="tags"><span>I²C</span><span>SPI</span><span>MQTT</span></div>
             </div>
           </article>
@@ -133,7 +206,8 @@
             <div class="project-body">
               <p class="project-type">CONNECTIVITY / BLE</p>
               <h3>BLE Device Configuration</h3>
-              <p>BLE-based configuration workflow for provisioning device parameters, reading status and transferring small control payloads.</p>
+              <p>BLE-based configuration workflow for provisioning device parameters, reading status and transferring
+                small control payloads.</p>
               <div class="tags"><span>BLE</span><span>UART</span><span>GATT</span></div>
             </div>
           </article>
@@ -142,7 +216,8 @@
             <div class="project-body">
               <p class="project-type">FIRMWARE / OTA</p>
               <h3>HTTP Firmware Update</h3>
-              <p>OTA update flow using HTTP, including image validation, version handling and safe handoff to the new firmware image.</p>
+              <p>OTA update flow using HTTP, including image validation, version handling and safe handoff to the new
+                firmware image.</p>
               <div class="tags"><span>HTTP</span><span>OTA</span><span>Bootloader</span></div>
             </div>
           </article>
@@ -151,7 +226,8 @@
             <div class="project-body">
               <p class="project-type">DRIVERS / PERIPHERALS</p>
               <h3>Peripheral Driver Layer</h3>
-              <p>Modular driver layer for UART, SPI and I²C peripherals with clear interfaces between hardware abstraction and application logic.</p>
+              <p>Modular driver layer for UART, SPI and I²C peripherals with clear interfaces between hardware
+                abstraction and application logic.</p>
               <div class="tags"><span>UART</span><span>SPI</span><span>I²C</span></div>
             </div>
           </article>
@@ -160,7 +236,8 @@
             <div class="project-body">
               <p class="project-type">IOT / EDGE</p>
               <h3>Telemetry & Command Service</h3>
-              <p>Embedded service that exposes device telemetry over HTTP while accepting remote commands and coordinating local peripherals.</p>
+              <p>Embedded service that exposes device telemetry over HTTP while accepting remote commands and
+                coordinating local peripherals.</p>
               <div class="tags"><span>HTTP</span><span>MQTT</span><span>Embedded</span></div>
             </div>
           </article>
@@ -168,16 +245,185 @@
       </div>
     </section>
 
-    <section class="section experience">
-      <div class="section-label">04 / EXPERIENCE</div>
-      <div class="section-content experience-row">
-        <div>
-          <p class="eyebrow">CAREER SNAPSHOT</p>
-          <h2>5 years of <span>firmware engineering.</span></h2>
+    <section class="section journey" id="journey">
+      <div class="section-label">04 / CAREER JOURNEY MAP</div>
+      <div class="section-content">
+        <div class="journey-header">
+          <div>
+            <p class="eyebrow"><span class="pulse"></span> EXPERIENCE ROADMAP</p>
+            <h2>5+ years of <span>firmware engineering.</span></h2>
+          </div>
+          <p class="journey-intro">
+            A milestone-driven career pathway spanning industrial IoT, connected edge platforms,
+            and automotive firmware architecture.
+          </p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div><strong>Senior Firmware Developer</strong><p>Embedded · IoT · Automotive</p><span>5 Years Experience</span></div>
+
+        <div class="journey-timeline">
+          <!-- Milestone 1 -->
+          <article class="journey-card">
+            <div class="journey-rail">
+              <div class="journey-marker">01</div>
+              <div class="journey-line"></div>
+            </div>
+            <div class="journey-body">
+              <div class="journey-meta">
+                <span class="journey-phase">MILESTONE 01 / EMBEDDED & IOT</span>
+                <span class="journey-duration">
+                  <span class="mono-badge">12/2021 – 04/2022</span>
+                  <span class="loc-badge">
+                    <svg class="map-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    Rajkot
+                  </span>
+                </span>
+              </div>
+              <div class="journey-title-row">
+                <div class="journey-company-info">
+                  <h3>
+                    <a href="https://ioipl.com" target="_blank" rel="noopener noreferrer" class="company-link" title="Visit Ionitive website">
+                      Ionitive Infotronix <span class="link-arrow">↗</span>
+                    </a>
+                  </h3>
+                  <div class="journey-role-text">
+                    <span class="role-title">Firmware Developer</span>
+                    <span class="role-separator">•</span>
+                    <span class="exp-pill">Internship + 1 Year Experience</span>
+                  </div>
+                </div>
+                <span class="journey-badge">Industrial IoT</span>
+              </div>
+              <p class="journey-summary">
+                Designed and developed core firmware for industrial IoT and M2M devices, establishing solid low-level
+                peripheral drivers and dependable field communications.
+              </p>
+              <ul class="journey-highlights">
+                <li>Developed low-level drivers (UART, SPI, I²C, GPIO) for microcontrollers and peripheral ICs.</li>
+                <li>Implemented FreeRTOS task coordination, interrupt handlers, and low-power standby modes.</li>
+                <li>Interfaced multi-sensor payloads and optimized field telemetry for harsh industrial environments.</li>
+              </ul>
+              <div class="tags">
+                <span>C/C++</span>
+                <span>FreeRTOS</span>
+                <span>UART / SPI / I²C</span>
+                <span>Sensor Interfacing</span>
+                <span>MCU Drivers</span>
+                <span>M2M</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Milestone 2 -->
+          <article class="journey-card">
+            <div class="journey-rail">
+              <div class="journey-marker">02</div>
+              <div class="journey-line"></div>
+            </div>
+            <div class="journey-body">
+              <div class="journey-meta">
+                <span class="journey-phase">MILESTONE 02 / CONNECTED PLATFORMS</span>
+                <span class="journey-duration">
+                  <span class="mono-badge">06/2022 – 08/2024</span>
+                  <span class="loc-badge">
+                    <svg class="map-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    Ahmedabad
+                  </span>
+                </span>
+              </div>
+              <div class="journey-title-row">
+                <div class="journey-company-info">
+                  <h3>
+                    <a href="https://rydotinfotech.com" target="_blank" rel="noopener noreferrer" class="company-link" title="Visit Rydot website">
+                      Rydot Infotech <span class="link-arrow">↗</span>
+                    </a>
+                  </h3>
+                  <div class="journey-role-text">
+                    <span class="role-title">Firmware Developer</span>
+                    <span class="role-separator">•</span>
+                    <span class="exp-pill">2+ Years</span>
+                  </div>
+                </div>
+                <span class="journey-badge">Cloud & Edge</span>
+              </div>
+              <p class="journey-summary">
+                Built scalable connected-device solutions, integrating embedded microcontrollers with cloud backends and
+                implementing secure wireless communication pipelines.
+              </p>
+              <ul class="journey-highlights">
+                <li>Architected resilient MQTT, HTTP, and BLE messaging layers for real-time telemetry and remote control.</li>
+                <li>Engineered fail-safe Over-The-Air (OTA) firmware upgrade pipelines with cryptographic verification and rollback safeguards.</li>
+                <li>Implemented event-driven state machines, sensor aggregation, and power-profile optimization.</li>
+              </ul>
+              <div class="tags">
+                <span>Embedded C++</span>
+                <span>MQTT</span>
+                <span>HTTP</span>
+                <span>BLE</span>
+                <span>OTA Updates</span>
+                <span>IoT Gateways</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Milestone 3 -->
+          <article class="journey-card current">
+            <div class="journey-rail">
+              <div class="journey-marker">03</div>
+              <div class="journey-line"></div>
+            </div>
+            <div class="journey-body">
+              <div class="journey-meta">
+                <span class="journey-phase">MILESTONE 03 / AUTOMOTIVE & SYSTEMS</span>
+                <span class="journey-duration">
+                  <span class="mono-badge active">08/2024 – Present</span>
+                  <span class="loc-badge">
+                    <svg class="map-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    Ahmedabad
+                  </span>
+                </span>
+              </div>
+              <div class="journey-title-row">
+                <div class="journey-company-info">
+                  <h3>
+                    <a href="https://electrifyservices.com" target="_blank" rel="noopener noreferrer" class="company-link" title="Visit Electrify website">
+                      Electrifyservices <span class="link-arrow">↗</span>
+                    </a>
+                  </h3>
+                  <div class="journey-role-text">
+                    <span class="role-title">Senior Firmware Developer</span>
+                    <span class="role-separator">•</span>
+                    <span class="exp-pill">2+ Years</span>
+                  </div>
+                </div>
+                <span class="journey-badge active"><span class="badge-dot"></span> Present / Lead</span>
+              </div>
+              <p class="journey-summary">
+                Leading firmware engineering and system architecture for intelligent embedded products and automotive
+                communication nodes, focusing on determinism, fault tolerance, and production quality.
+              </p>
+              <ul class="journey-highlights">
+                <li>Designing robust CAN bus protocol stacks, message filtering, and diagnostic fault code handling for automotive subsystems.</li>
+                <li>Architecting modular Hardware Abstraction Layers (HAL) bridging diverse MCU platforms with high-level application logic.</li>
+                <li>Leading board bring-up, hardware-in-the-loop debugging, and safety-critical firmware validation.</li>
+              </ul>
+              <div class="tags">
+                <span>CAN Bus</span>
+                <span>Automotive Diagnostics</span>
+                <span>ECU Firmware</span>
+                <span>HAL Architecture</span>
+                <span>Hardware Bring-Up</span>
+                <span>Fault Tolerance</span>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -196,7 +442,8 @@
     </section>
   </main>
 
-  <footer><span>© 2026 Abhishek Makwana</span><span>Developed by Abhishek</span></footer>
-  <script src="script.js"></script>
+  <footer><span>© 2026 Abhishek Makwana</span><span>Made with ❤️ by Abhishek</span></footer>
+  <script src="script.js?v=3"></script>
 </body>
+
 </html>
